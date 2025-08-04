@@ -36,6 +36,7 @@ const Cart = () => {
   return (
     <>
 
+      <div className='container mt-5 p-4 shadow-lg rounded'>
 
       <h2 className='mt-6'>Detalles del Pedido:</h2>
       {cart.map((pizza) => (
@@ -61,7 +62,7 @@ const Cart = () => {
           <button 
             className='btn btn-outline-success' 
             onClick={() => incrementQuantity(pizza.id)}
-          >
+            >
             +
           </button>
 
@@ -75,6 +76,7 @@ const Cart = () => {
           Total: ${total.toLocaleString('es-CL')}
         </h3>
       </div>
+    </div>
     </>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import CardPizza from './CardPizza';
 import { pizzas } from '../assets/json/pizzas.js';
+import { BrowserRouter } from 'react-router-dom';
 
 const Home = () => {
   return (

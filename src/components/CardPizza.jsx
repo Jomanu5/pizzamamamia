@@ -3,6 +3,9 @@ import React from 'react';
 const CardPizza = ({ id, desc, img, ingredientes, nombre, precio }) => {
   
   const precioFormato = precio.toLocaleString('es-CL'); 
+  
+  
+  
   return (
     
     <div className='card-container d-flex flex-wrap justify-content-center gap-3'>
