@@ -6,6 +6,7 @@ const Layout = () => {
   const token = false;
   const precioFormato = total.toLocaleString('es-CL');
   
+ 
   
     return (
     
@@ -26,7 +27,7 @@ const Layout = () => {
           <Link to ='/'className="nav-link active text-light" href="#">Home</Link>
         </li>
         <li className="nav-item">
-          <Link to ='404' className="nav-link text-light" href="#">Profile</Link>
+          <Link to ='/profile' className="nav-link text-light" >Profile</Link>
         </li>
         <li className="nav-item">
           <Link to='/cart' className="nav-link text-light" href="#">Cart</Link>

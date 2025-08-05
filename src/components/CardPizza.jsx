@@ -1,11 +1,16 @@
 import React from 'react';
+import { useEffect,useState } from 'react';
+import { useParams } from 'react-router-dom'; 
+
 
 const CardPizza = ({ id, desc, img, ingredientes, nombre, precio }) => {
   
   const precioFormato = precio.toLocaleString('es-CL'); 
   
-  
-  
+
+
+
+
   return (
     
     <div className='card-container d-flex flex-wrap justify-content-center gap-3'>
