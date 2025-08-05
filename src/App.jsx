@@ -23,12 +23,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path='/cart' element={<Cart />} /> 
+          <Route path='/cart' element={<Cart />} /> http://localhost:5000/api/pizzas/p001
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='*' element={<NotPage />} />
-          <Route path="/pizza/:idpizza" element={<Pizza />} />
+          <Route path="/pizzas/:idpizza" element={<Pizza />} />
 
           </Route>
         </Routes>

@@ -9,19 +9,17 @@ const pizza = () => {
   const [pizza, setPizza] = useState(null);
 
   
-    useEffect(() => {
+   useEffect(() => {
     const getPizza = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/pizzas/${idpizza}`); // ← ruta dinámica        
-        setPizza(response.data);
-      } catch (error) {
-        console.error("Error al cargar la pizza:", error);
-        setError(true);
-      }
-    };
-
-    getPizza();
-  }, [idpizza]);
+    try {
+      const { data } = await axios.get(`http://localhost:5000/api/pizzas/${idpizza}`);
+      setPizza(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  getPizza();
+}, [idpizza]);
   
 
   return !pizza ? (
