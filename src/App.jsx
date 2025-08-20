@@ -12,18 +12,21 @@ import NotPage from './pages/NotPage'
 import Profile from './pages/Profile'
 
 import Pizza from './pages/Pizza'
+import { CartProvider } from './context/CartContext'
+import { ApiProvider } from './context/ApiContext'
 function App() {
   
 
   return (
     <>
+    <ApiProvider>
 
-
+    <CartProvider>
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path='/cart' element={<Cart />} /> http://localhost:5000/api/pizzas/p001
+          <Route path='/cart' element={<Cart />} /> 
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
@@ -32,10 +35,11 @@ function App() {
 
           </Route>
         </Routes>
-        
-
     </BrowserRouter>
+    
     <Footer />
+    </CartProvider>
+    </ApiProvider>
      
     </>
   )
