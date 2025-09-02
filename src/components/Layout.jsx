@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {  useContext } from 'react'
 import{Link, Outlet} from 'react-router-dom';
+import CartContext from '../context/CartContext';
 
 const Layout = () => {
-  const total = 25000;
+  
   const token = false;
-  const precioFormato = total.toLocaleString('es-CL');
+  const { total } = useContext(CartContext);
+  // const precioFormato s= total.toLocaleString('es-CL');
   
  
   
@@ -50,7 +52,7 @@ const Layout = () => {
         </div>
       </ul>
       <Link to ='/cart' className="btn btn-secondary ms-auto" type="button">
-        <button type="button" className="btn btn-secondary ms-auto">Total: $ {precioFormato}</button>
+        <button type="button" className="btn btn-secondary ms-auto">Total: $ {total.toLocaleString('es-CL')}</button>
       </Link>  
 
     </div>

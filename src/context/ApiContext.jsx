@@ -6,9 +6,7 @@ const ApiContext = createContext();
 export const ApiProvider = ({children}) =>{
     const [pizzas, setPizzas] = useState([]);
 
-
-    useEffect(() => {
-      const getData = async ()=> {
+    const getData = async ()=> {
         try {
             const res = await axios.get ('http://localhost:5000/api/pizzas')
             setPizzas(res.data);
@@ -16,15 +14,17 @@ export const ApiProvider = ({children}) =>{
             console.error("Error fetching data:", error);     
         }
       }
+
+    useEffect(() => {
         getData();
     }, [])
 
-}
-
+    
     return (
-    <ApiContext.Provider value={{pizzas}}>
+        <ApiContext.Provider value={{pizzas, getData}}>
         {children}
-    </ApiContext.Provider>
+        </ApiContext.Provider>
     )
-
-    export default ApiContext
+    
+}
+export default ApiContext

@@ -1,38 +1,36 @@
 import React from 'react'
-import { useState } from 'react';
-import { pizzaCart } from '../assets/json/pizzas.js'
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
   
-  // const [cart, setCart] = useState(pizzaCart);
-  const {cart, setCart} = useContext(CartContext);
+  const { cart, total, decrementQuantity, incrementQuantity } = useContext(CartContext);
+
   
+  // const decrementQuantity = (pizza) => {
+  //   setCart(prevCart => 
+  //     prevCart.map(pizza => 
+  //       pizza.id === id && pizza.count > 0
+  //         ? { ...pizza, count: pizza.count - 1 } 
+  //         : pizza
+  //     ).filter(pizza => pizza.count > 0)
+  //   );
+  // };
 
-  const incrementQuantity = (id) => {
-    setCart(prevCart => 
-      prevCart.map(pizza => 
-        pizza.id === id 
-          ? { ...pizza, count: pizza.count + 1 } 
-          : pizza
-      )
-    );
-  };
+  // const incrementQuantity = (id) => {
+  //   setCart(prevCart => 
+  //     prevCart.map(pizza => 
+  //       pizza.id === id 
+  //         ? { ...pizza, count: pizza.count + 1 } 
+  //         : pizza
+  //     )
+  //   );
+  // };
 
-  const decrementQuantity = (id) => {
-    setCart(prevCart => 
-      prevCart.map(pizza => 
-        pizza.id === id && pizza.count > 0
-          ? { ...pizza, count: pizza.count - 1 } 
-          : pizza
-      ).filter(pizza => pizza.count > 0)
-    );
-  };
 
-  const total = cart.reduce((suma, pizza) => {
-    return suma + (pizza.price * pizza.count);
-  }, 0);
+  // const total = cart.reduce((suma, pizza) => {
+  //   return suma + (pizza.price * pizza.count);
+  // }, 0);
 
 
 
