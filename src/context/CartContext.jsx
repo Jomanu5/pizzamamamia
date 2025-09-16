@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+
 import { createContext } from 'react';
 import { useState } from 'react';
 
@@ -11,7 +11,7 @@ export const CartProvider = ({children}) =>{
     
     
     
-  const decrementQuantity = (pizza) => {
+  const decrementQuantity = (id) => {
     setCart(prevCart => 
       prevCart.map(pizza => 
         pizza.id === id && pizza.count > 0

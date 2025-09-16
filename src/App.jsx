@@ -13,11 +13,17 @@ import Profile from './pages/Profile'
 import Pizza from './pages/Pizza'
 import { CartProvider } from './context/CartContext'
 import { ApiProvider } from './context/ApiContext'
+import { useContext } from 'react'
+import { TokenContext } from './context/TokenContext'
 function App() {
+
+  const { token } = useContext(TokenContext);
   
 
   return (
     <>
+    
+
     <ApiProvider>
 
     <CartProvider>
@@ -28,7 +34,7 @@ function App() {
           <Route path='/cart' element={<Cart />} /> 
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={token ? <Profile />: <Login />} />
           <Route path='*' element={<NotPage />} />
           <Route path="/pizzas/:idpizza" element={<Pizza />} />
 
@@ -40,6 +46,7 @@ function App() {
     </CartProvider>
     </ApiProvider>
      
+    
     </>
   )
 }

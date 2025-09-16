@@ -15,21 +15,21 @@ const Header = () => {
   <div className="carousel-inner">
     <div className="carousel-item active">
       <img src={img1} className="d-block  w-100 img-fluid" alt="..."/>
-       <div class="carousel-caption d-none d-md-block bg-secondary p-2 text-light bg-opacity-50">
+       <div className="carousel-caption d-none d-md-block bg-secondary p-2 text-light bg-opacity-50">
         <h2>Pizzas Mamma Mía</h2>
         <h3>Las Mejores pizzas de la ciudad</h3>.
       </div>
     </div>
     <div className="carousel-item">
       <img src={img2} className="d-block  w-100 img-fluid" alt="..."/>
-        <div class="carousel-caption d-none d-md-block bg-secondary p-2 text-light bg-opacity-50">
+        <div className="carousel-caption d-none d-md-block bg-secondary p-2 text-light bg-opacity-50">
           <h2>Pizzas Mamma Mía</h2>
           <h3>Las Mejores pizzas de la ciudad</h3>.
       </div>
     </div>
     <div className="carousel-item">
       <img src={img3} className="d-block  w-100 img-fluid" alt="..."/>
-      <div class="carousel-caption d-none d-md-block bg-secondary p-2 text-light bg-opacity-50">
+      <div className="carousel-caption d-none d-md-block bg-secondary p-2 text-light bg-opacity-50">
           <h2>Pizzas Mamma Mía</h2>
           <h3>Las Mejores pizzas de la ciudad</h3>.
       </div>  

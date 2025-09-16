@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useEffect,useState } from 'react';
-import { useParams } from 'react-router-dom'; 
+import { Link, useParams } from 'react-router-dom'; 
 import CartContext from '../context/CartContext';
 
 
@@ -41,10 +41,13 @@ const CardPizza = ({ pizza }) => {
         </div>
 
         <div className="card-body d-flex justify-content-between p-4 mt-1">
-          <button type="button" className="btn btn-primary px-4 fs-6">Más detalles</button>
+          <button type="button" className="btn btn-primary px-4 fs-6">
+            <Link to ={`/pizzas/${pizza.id}`} className="text-decoration-none text-white">
+            Más detalles
+            </Link>
+            </button>
           <button type="button" className="btn btn-success px-4 mx-2 fs-6" onClick={ () => agregarCarrito(pizza)}>Agregar al carrito</button>
         
-        {/* funcion dentro de funcion /funcion controlada. */}
         </div>
       </div>
     </div>
