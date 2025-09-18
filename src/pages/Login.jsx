@@ -1,86 +1,79 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
+import Home from './Home';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { TokenContext } from '../context/TokenContext';
+
 const Login = () => {
-    
-    const [user, setUser] = useState("");
-    const [password1, setPassword1] = useState("");
-    
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { isAuthenticated } = useContext(TokenContext); 
+
+  const navigate = useNavigate();
   
-    const [error, setError] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (!response.ok) {
+        console.log('Login failed');
+      } else {alert('Login exitoso')}
+
+      const data = await response.json();
+      localStorage.setItem('token', data.token); 
+      setEmail('');
+      setPassword('');
+      navigate('/');
+
       
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log("Usuario:", user,
-                  "Contraseña 1:", password1,
-        
-      )
+    
+    } catch (error) {
+      console.log('Error:', error);
+      alert('Error en el login');
+    }
+
+  };
   
-      if (!user.trim() || !password1.trim()) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Todos los campos son obligatorios!',
-        })
-        setError(true);
-        return; 
-      }
-      else {
-        setError(false);
-        
-        if (user === "admin"||"admin@admin.com" && password1 === "12345678") {
-          Swal.fire({
-            icon: 'success',
-            title: '¡Bienvenido!',
-            text: 'Has iniciado sesión correctamente.',
-          })
-          setUser("");
-          setPassword1("");
-        }
-        else {
-          setError(true);
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Usuario o contraseña incorrectos! intenta con: Usuario: "admin" o "admin@admin.com, password: 12345678',
-          })
-          setUser("");
-          setPassword1("");
-          return;
-        }
-      }
-      }
-      
-      
+  
+  
+  
       return (
         <>
         
         <form onSubmit= {handleSubmit} className="container mt-5 p-4 shadow-lg rounded">
-        {error? <p>Usuario y/o clave incorrecta, intenta con Usuario: "admin" o "admin@admin.com, password: 12345678</p>: null}
         
         <h2>Inicia Sesión</h2>
         <h4>¡y obten ofertas de las mejores  de pizzas!</h4>
           <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">Nombre de usuario</label>
+            <label for="exampleFormControlInput1" className="form-label">E-mail</label>
             <input 
               type="text"  
               className="form-control" 
               id="exampleFormControlInput1" 
-              placeholder="Usuario"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               />
   
           </div>
           
           <div className="mb-3">
-            <label for="exampleFormControlTextarea1" className="form-label">Contraseña nueva</label>
+            <label for="exampleFormControlTextarea1" className="form-label">Password</label>
             <input 
               type="password" 
               id="inputPassword1" 
               class="form-control" 
               aria-describedby="passwordHelpBlock"
-              value={password1}
-              onChange={(e)=> setPassword1(e.target.value)}/>
+              value={password}
+              onChange={(e)=> setPassword(e.target.value)}/>
           </div>
           
           

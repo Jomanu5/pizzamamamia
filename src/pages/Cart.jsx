@@ -4,34 +4,36 @@ import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
   
-  const { cart, total, decrementQuantity, incrementQuantity } = useContext(CartContext);
+  const { cart, setCart, total, setTotal, decrementQuantity, incrementQuantity } = useContext(CartContext);
+  const token = localStorage.getItem('token');
 
-  
-  // const decrementQuantity = (pizza) => {
-  //   setCart(prevCart => 
-  //     prevCart.map(pizza => 
-  //       pizza.id === id && pizza.count > 0
-  //         ? { ...pizza, count: pizza.count - 1 } 
-  //         : pizza
-  //     ).filter(pizza => pizza.count > 0)
-  //   );
-  // };
+      const sendCart = async () => {
 
-  // const incrementQuantity = (id) => {
-  //   setCart(prevCart => 
-  //     prevCart.map(pizza => 
-  //       pizza.id === id 
-  //         ? { ...pizza, count: pizza.count + 1 } 
-  //         : pizza
-  //     )
-  //   );
-  // };
+        try {
+            const response = await fetch("http://localhost:5000/api/checkouts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ cart })
+            })
 
+            if (!response.ok) {
+                console.log("error al enviar carrito")
+            }
 
-  // const total = cart.reduce((suma, pizza) => {
-  //   return suma + (pizza.price * pizza.count);
-  // }, 0);
+            if (response.ok) {
+                alert("Compra realizada con éxito")
+                
+                setCart([])
+                setTotal(0)
+            }
 
+        } catch (error) {
+            console.log("error: ", error)
+        }
+    }
 
 
 
@@ -76,6 +78,10 @@ const Cart = () => {
        <div className="mt-4 p-3 bg-light border-top">
         <h3 className="text-end">
           Total: ${total.toLocaleString('es-CL')}
+          <button className="btn btn-success px-4 mx-2 fs-6" onClick={sendCart}>
+            Pagar
+
+          </button>
         </h3>
       </div>
     </div>

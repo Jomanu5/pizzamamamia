@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import CartContext from '../context/CartContext';
 import { TokenContext } from '../context/TokenContext'; 
+import LogoutButton from './LogoutButton';
 const Layout = () => {
   
   const { token } = useContext(TokenContext); 
@@ -25,41 +26,39 @@ const Layout = () => {
           
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
+              <button className="nav-item text-light btn btn-dark">
                 <NavLink to='/' className={setActiveLink}>
                   Home
                 </NavLink>
-              </li>
+              </button>
               
             
-              <li className="nav-item">
+              <button className="nav-item text-light btn btn-dark">
                  <NavLink to='/profile' className={setActiveLink}>
                   Profile
                 </NavLink>
-              </li>
+              </button>
               
               
               <div>
                 {token ? (
                   <div className="d-flex gap-2">
-                    <li className="nav-item">
-                      <NavLink to='/logout' className={setActiveLink}>
-                        Logout 
-                      </NavLink>
+                    <li className="nav-item text-light btn btn-dark">
+                    <LogoutButton />
                     </li>
                   </div>
                 ) : (
                   <div className="d-flex gap-2">
-                    <li className="nav-item">
+                    <button className="nav-item text-light btn btn-dark">
                       <NavLink to='/login' className={setActiveLink}>
                         Login
                       </NavLink>
-                    </li>
-                    <li className="nav-item">
+                    </button>
+                    <button className="nav-item text-light btn btn-dark">
                       <NavLink to='/register' className={setActiveLink}>
                         Register
                       </NavLink>
-                    </li>
+                    </button>
                   </div>
                 )}
               </div>
@@ -67,7 +66,7 @@ const Layout = () => {
             
             <Link to='/cart' className="btn btn-secondary ms-auto">
               <button type="button" className="btn btn-secondary">
-                Total: $ {total.toLocaleString('es-CL')}
+                Carrito: Total: $ {total.toLocaleString('es-CL')}
               </button>
             </Link>  
           </div>
